@@ -1,0 +1,1049 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <link rel="stylesheet" href="css/leaflet-control-geocoder.Geocoder.css">
+        <link rel="icon" type="image/png" sizes="16x16" href="images/city_70x70.png">
+        <style>
+        html, body, #map {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+        </style>
+        <title>Zoneamento - Jundiaí</title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script>
+        <script src="js/multi-style-layer.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="js/leaflet-control-geocoder.Geocoder.js"></script>
+        <script src="data/LimitedomunicpioJundia_1.js"></script>
+        <script src="data/MacrozonadeExpansoUrbana_2.js"></script>
+        <script src="data/MacrozonadeUrbanizaoConsolidada_3.js"></script>
+        <script src="data/MacrozonadeProteodasSerras_4.js"></script>
+        <script src="data/MacrozonadeDesenvolvimentoRuralSustentvel_5.js"></script>
+        <script src="data/reaEspecialdeEstruturaoCentralII_6.js"></script>
+        <script src="data/reaEspecialdeEstruturaoCentralI_7.js"></script>
+        <script src="data/reaEspecialdeInteresseComercialeLogstico_8.js"></script>
+        <script src="data/readeControledaAtividadeMinerria_9.js"></script>
+        <script src="data/readeProteodoCerrado_10.js"></script>
+        <script src="data/readeProteodoRioJundia_11.js"></script>
+        <script src="data/SetoresdeQualificaoUrbana_12.js"></script>
+        <script src="data/EixodeEstruturaoUrbanaII_13.js"></script>
+        <script src="data/EixodeEstruturaoUrbanaI_14.js"></script>
+        <script src="data/ZEISII_15.js"></script>
+        <script src="data/ZEISI_16.js"></script>
+        <script>
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:1
+        })
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/mariaeloisaveras" target="_blank" title="Melhor grupo do BPT">Catarina Bortoletto, Maria Eloisa Véras, Mariana Urrestarazu, Natalia Peregrino</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a>');
+        var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+            if (bounds_group.getLayers().length) {
+                map.fitBounds(bounds_group.getBounds());
+            }
+        }
+        map.createPane('pane_GoogleSatlite_0');
+        map.getPane('pane_GoogleSatlite_0').style.zIndex = 400;
+        var layer_GoogleSatlite_0 = L.tileLayer('http://www.google.cn/maps/vt?lyrs=s@189&gl=cn&x={x}&y={y}&z={z}', {
+            pane: 'pane_GoogleSatlite_0',
+            opacity: 0.8,
+            //attribution: '<a href="https://www.google.com/intl/zh-CN_cn/permissions/geoguidelines/attr-guide.html">地图数据 ©2016 Google</a>',
+            minZoom: 1,
+            maxZoom: 28,
+            minNativeZoom: 0,
+            maxNativeZoom: 21
+        });
+        layer_GoogleSatlite_0;
+        map.addLayer(layer_GoogleSatlite_0);
+        function pop_LimitedomunicpioJundia_1(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['NM_MUNICIP'] !== null ? autolinker.link(feature.properties['NM_MUNICIP'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['CD_GEOCMU'] !== null ? autolinker.link(feature.properties['CD_GEOCMU'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_LimitedomunicpioJundia_1_0() {
+            return {
+                pane: 'pane_LimitedomunicpioJundia_1',
+                opacity: 1,
+                color: 'rgba(228,26,28,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 4.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        map.createPane('pane_LimitedomunicpioJundia_1');
+        map.getPane('pane_LimitedomunicpioJundia_1').style.zIndex = 401;
+        map.getPane('pane_LimitedomunicpioJundia_1').style['mix-blend-mode'] = 'normal';
+        var layer_LimitedomunicpioJundia_1 = new L.geoJson(json_LimitedomunicpioJundia_1, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_LimitedomunicpioJundia_1',
+            layerName: 'layer_LimitedomunicpioJundia_1',
+            pane: 'pane_LimitedomunicpioJundia_1',
+            onEachFeature: pop_LimitedomunicpioJundia_1,
+            style: style_LimitedomunicpioJundia_1_0,
+        });
+        bounds_group.addLayer(layer_LimitedomunicpioJundia_1);
+        map.addLayer(layer_LimitedomunicpioJundia_1);
+        function pop_MacrozonadeExpansoUrbana_2(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['id'] !== null ? autolinker.link(feature.properties['id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['macro'] !== null ? autolinker.link(feature.properties['macro'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['zoneam'] !== null ? autolinker.link(feature.properties['zoneam'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['area'] !== null ? autolinker.link(feature.properties['area'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_MacrozonadeExpansoUrbana_2_0(feature) {
+            switch(String(feature.properties['zoneam'])) {
+                case 'Zona de Expansão Moderada':
+                    return {
+                pane: 'pane_MacrozonadeExpansoUrbana_2',
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(114,248,255,0.4)',
+                interactive: true,
+            }
+                    break;
+                case 'Zona de Interesse Comercial e Logistico I':
+                    return {
+                pane: 'pane_MacrozonadeExpansoUrbana_2',
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(195,35,206,0.4)',
+                interactive: true,
+            }
+                    break;
+                case 'Zona de Interesse Comercial e Logistico II':
+                    return {
+                pane: 'pane_MacrozonadeExpansoUrbana_2',
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(219,0,0,0.4)',
+                interactive: true,
+            }
+                    break;
+                case 'Zona de Uso Diversificado II':
+                    return {
+                pane: 'pane_MacrozonadeExpansoUrbana_2',
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(219,219,219,0.4)',
+                interactive: true,
+            }
+                    break;
+            }
+        }
+        map.createPane('pane_MacrozonadeExpansoUrbana_2');
+        map.getPane('pane_MacrozonadeExpansoUrbana_2').style.zIndex = 402;
+        map.getPane('pane_MacrozonadeExpansoUrbana_2').style['mix-blend-mode'] = 'normal';
+        var layer_MacrozonadeExpansoUrbana_2 = new L.geoJson(json_MacrozonadeExpansoUrbana_2, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_MacrozonadeExpansoUrbana_2',
+            layerName: 'layer_MacrozonadeExpansoUrbana_2',
+            pane: 'pane_MacrozonadeExpansoUrbana_2',
+            onEachFeature: pop_MacrozonadeExpansoUrbana_2,
+            style: style_MacrozonadeExpansoUrbana_2_0,
+        });
+        bounds_group.addLayer(layer_MacrozonadeExpansoUrbana_2);
+        map.addLayer(layer_MacrozonadeExpansoUrbana_2);
+        function pop_MacrozonadeUrbanizaoConsolidada_3(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['id'] !== null ? autolinker.link(feature.properties['id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['macro'] !== null ? autolinker.link(feature.properties['macro'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['zoneam'] !== null ? autolinker.link(feature.properties['zoneam'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['area'] !== null ? autolinker.link(feature.properties['area'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_MacrozonadeUrbanizaoConsolidada_3_0(feature) {
+            switch(String(feature.properties['zoneam'])) {
+                case 'Zona de Controle e Qualificação Urbana e Ambiental':
+                    return {
+                pane: 'pane_MacrozonadeUrbanizaoConsolidada_3',
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(227,210,134,0.4)',
+                interactive: true,
+            }
+                    break;
+                case 'Zona de Uso Diversificado I':
+                    return {
+                pane: 'pane_MacrozonadeUrbanizaoConsolidada_3',
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(88,97,202,0.4)',
+                interactive: true,
+            }
+                    break;
+                case 'Zona Especial de Interesse Histórico-Cultural':
+                    return {
+                pane: 'pane_MacrozonadeUrbanizaoConsolidada_3',
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(236,99,101,0.4)',
+                interactive: true,
+            }
+                    break;
+                case 'Zona Transicao Periurbana I':
+                    return {
+                pane: 'pane_MacrozonadeUrbanizaoConsolidada_3',
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(168,140,0,0.4)',
+                interactive: true,
+            }
+                    break;
+            }
+        }
+        map.createPane('pane_MacrozonadeUrbanizaoConsolidada_3');
+        map.getPane('pane_MacrozonadeUrbanizaoConsolidada_3').style.zIndex = 403;
+        map.getPane('pane_MacrozonadeUrbanizaoConsolidada_3').style['mix-blend-mode'] = 'normal';
+        var layer_MacrozonadeUrbanizaoConsolidada_3 = new L.geoJson(json_MacrozonadeUrbanizaoConsolidada_3, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_MacrozonadeUrbanizaoConsolidada_3',
+            layerName: 'layer_MacrozonadeUrbanizaoConsolidada_3',
+            pane: 'pane_MacrozonadeUrbanizaoConsolidada_3',
+            onEachFeature: pop_MacrozonadeUrbanizaoConsolidada_3,
+            style: style_MacrozonadeUrbanizaoConsolidada_3_0,
+        });
+        bounds_group.addLayer(layer_MacrozonadeUrbanizaoConsolidada_3);
+        map.addLayer(layer_MacrozonadeUrbanizaoConsolidada_3);
+        function pop_MacrozonadeProteodasSerras_4(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['id'] !== null ? autolinker.link(feature.properties['id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['macro'] !== null ? autolinker.link(feature.properties['macro'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['zoneam'] !== null ? autolinker.link(feature.properties['zoneam'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['area'] !== null ? autolinker.link(feature.properties['area'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_MacrozonadeProteodasSerras_4_0(feature) {
+            switch(String(feature.properties['zoneam'])) {
+                case 'Zona de Controle Ambiental I':
+                    return {
+                pane: 'pane_MacrozonadeProteodasSerras_4',
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(135,58,211,0.4)',
+                interactive: true,
+            }
+                    break;
+                case 'Zona de Controle Ambiental II':
+                    return {
+                pane: 'pane_MacrozonadeProteodasSerras_4',
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(144,28,65,0.4)',
+                interactive: true,
+            }
+                    break;
+                case 'Zona de Protecao Ambiental':
+                    return {
+                pane: 'pane_MacrozonadeProteodasSerras_4',
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(12,115,46,0.4)',
+                interactive: true,
+            }
+                    break;
+                case 'Zona de Uso Sustentável':
+                    return {
+                pane: 'pane_MacrozonadeProteodasSerras_4',
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(28,220,70,0.4)',
+                interactive: true,
+            }
+                    break;
+            }
+        }
+        map.createPane('pane_MacrozonadeProteodasSerras_4');
+        map.getPane('pane_MacrozonadeProteodasSerras_4').style.zIndex = 404;
+        map.getPane('pane_MacrozonadeProteodasSerras_4').style['mix-blend-mode'] = 'normal';
+        var layer_MacrozonadeProteodasSerras_4 = new L.geoJson(json_MacrozonadeProteodasSerras_4, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_MacrozonadeProteodasSerras_4',
+            layerName: 'layer_MacrozonadeProteodasSerras_4',
+            pane: 'pane_MacrozonadeProteodasSerras_4',
+            onEachFeature: pop_MacrozonadeProteodasSerras_4,
+            style: style_MacrozonadeProteodasSerras_4_0,
+        });
+        bounds_group.addLayer(layer_MacrozonadeProteodasSerras_4);
+        map.addLayer(layer_MacrozonadeProteodasSerras_4);
+        function pop_MacrozonadeDesenvolvimentoRuralSustentvel_5(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['id'] !== null ? autolinker.link(feature.properties['id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['zoneam'] !== null ? autolinker.link(feature.properties['zoneam'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['macro'] !== null ? autolinker.link(feature.properties['macro'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['area'] !== null ? autolinker.link(feature.properties['area'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_MacrozonadeDesenvolvimentoRuralSustentvel_5_0(feature) {
+            switch(String(feature.properties['zoneam'])) {
+                case 'Zona de Protecao da Biodiversidade':
+                    return {
+                pane: 'pane_MacrozonadeDesenvolvimentoRuralSustentvel_5',
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(61,218,192,0.4)',
+                interactive: true,
+            }
+                    break;
+                case 'Zona de Transição Periurbana II':
+                    return {
+                pane: 'pane_MacrozonadeDesenvolvimentoRuralSustentvel_5',
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(99,94,231,0.4)',
+                interactive: true,
+            }
+                    break;
+                case 'Zona Produtiva e de Abastecimento Hidrico':
+                    return {
+                pane: 'pane_MacrozonadeDesenvolvimentoRuralSustentvel_5',
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,50,139,0.4)',
+                interactive: true,
+            }
+                    break;
+                case 'Zona Turistica do Circuito das Frutas':
+                    return {
+                pane: 'pane_MacrozonadeDesenvolvimentoRuralSustentvel_5',
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(13,34,80,0.4)',
+                interactive: true,
+            }
+                    break;
+            }
+        }
+        map.createPane('pane_MacrozonadeDesenvolvimentoRuralSustentvel_5');
+        map.getPane('pane_MacrozonadeDesenvolvimentoRuralSustentvel_5').style.zIndex = 405;
+        map.getPane('pane_MacrozonadeDesenvolvimentoRuralSustentvel_5').style['mix-blend-mode'] = 'normal';
+        var layer_MacrozonadeDesenvolvimentoRuralSustentvel_5 = new L.geoJson(json_MacrozonadeDesenvolvimentoRuralSustentvel_5, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_MacrozonadeDesenvolvimentoRuralSustentvel_5',
+            layerName: 'layer_MacrozonadeDesenvolvimentoRuralSustentvel_5',
+            pane: 'pane_MacrozonadeDesenvolvimentoRuralSustentvel_5',
+            onEachFeature: pop_MacrozonadeDesenvolvimentoRuralSustentvel_5,
+            style: style_MacrozonadeDesenvolvimentoRuralSustentvel_5_0,
+        });
+        bounds_group.addLayer(layer_MacrozonadeDesenvolvimentoRuralSustentvel_5);
+        map.addLayer(layer_MacrozonadeDesenvolvimentoRuralSustentvel_5);
+        function pop_reaEspecialdeEstruturaoCentralII_6(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['id'] !== null ? autolinker.link(feature.properties['id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['macro'] !== null ? autolinker.link(feature.properties['macro'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['zoneam'] !== null ? autolinker.link(feature.properties['zoneam'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['area'] !== null ? autolinker.link(feature.properties['area'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_reaEspecialdeEstruturaoCentralII_6_0() {
+            return {
+                pane: 'pane_reaEspecialdeEstruturaoCentralII_6',
+                opacity: 1,
+                color: 'rgba(80,80,80,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(229,30,166,0.6)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_reaEspecialdeEstruturaoCentralII_6');
+        map.getPane('pane_reaEspecialdeEstruturaoCentralII_6').style.zIndex = 406;
+        map.getPane('pane_reaEspecialdeEstruturaoCentralII_6').style['mix-blend-mode'] = 'normal';
+        var layer_reaEspecialdeEstruturaoCentralII_6 = new L.geoJson(json_reaEspecialdeEstruturaoCentralII_6, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_reaEspecialdeEstruturaoCentralII_6',
+            layerName: 'layer_reaEspecialdeEstruturaoCentralII_6',
+            pane: 'pane_reaEspecialdeEstruturaoCentralII_6',
+            onEachFeature: pop_reaEspecialdeEstruturaoCentralII_6,
+            style: style_reaEspecialdeEstruturaoCentralII_6_0,
+        });
+        bounds_group.addLayer(layer_reaEspecialdeEstruturaoCentralII_6);
+        map.addLayer(layer_reaEspecialdeEstruturaoCentralII_6);
+        function pop_reaEspecialdeEstruturaoCentralI_7(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['id'] !== null ? autolinker.link(feature.properties['id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['macro'] !== null ? autolinker.link(feature.properties['macro'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['zoneam'] !== null ? autolinker.link(feature.properties['zoneam'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['area'] !== null ? autolinker.link(feature.properties['area'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_reaEspecialdeEstruturaoCentralI_7_0() {
+            return {
+                pane: 'pane_reaEspecialdeEstruturaoCentralI_7',
+                opacity: 1,
+                color: 'rgba(80,80,80,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(174,10,189,0.6)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_reaEspecialdeEstruturaoCentralI_7');
+        map.getPane('pane_reaEspecialdeEstruturaoCentralI_7').style.zIndex = 407;
+        map.getPane('pane_reaEspecialdeEstruturaoCentralI_7').style['mix-blend-mode'] = 'normal';
+        var layer_reaEspecialdeEstruturaoCentralI_7 = new L.geoJson(json_reaEspecialdeEstruturaoCentralI_7, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_reaEspecialdeEstruturaoCentralI_7',
+            layerName: 'layer_reaEspecialdeEstruturaoCentralI_7',
+            pane: 'pane_reaEspecialdeEstruturaoCentralI_7',
+            onEachFeature: pop_reaEspecialdeEstruturaoCentralI_7,
+            style: style_reaEspecialdeEstruturaoCentralI_7_0,
+        });
+        bounds_group.addLayer(layer_reaEspecialdeEstruturaoCentralI_7);
+        map.addLayer(layer_reaEspecialdeEstruturaoCentralI_7);
+        function pop_reaEspecialdeInteresseComercialeLogstico_8(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['id'] !== null ? autolinker.link(feature.properties['id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['macro'] !== null ? autolinker.link(feature.properties['macro'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['zoneam'] !== null ? autolinker.link(feature.properties['zoneam'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['area'] !== null ? autolinker.link(feature.properties['area'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_reaEspecialdeInteresseComercialeLogstico_8_0() {
+            return {
+                pane: 'pane_reaEspecialdeInteresseComercialeLogstico_8',
+                opacity: 1,
+                color: 'rgba(80,80,80,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(45,229,205,0.6)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_reaEspecialdeInteresseComercialeLogstico_8');
+        map.getPane('pane_reaEspecialdeInteresseComercialeLogstico_8').style.zIndex = 408;
+        map.getPane('pane_reaEspecialdeInteresseComercialeLogstico_8').style['mix-blend-mode'] = 'normal';
+        var layer_reaEspecialdeInteresseComercialeLogstico_8 = new L.geoJson(json_reaEspecialdeInteresseComercialeLogstico_8, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_reaEspecialdeInteresseComercialeLogstico_8',
+            layerName: 'layer_reaEspecialdeInteresseComercialeLogstico_8',
+            pane: 'pane_reaEspecialdeInteresseComercialeLogstico_8',
+            onEachFeature: pop_reaEspecialdeInteresseComercialeLogstico_8,
+            style: style_reaEspecialdeInteresseComercialeLogstico_8_0,
+        });
+        bounds_group.addLayer(layer_reaEspecialdeInteresseComercialeLogstico_8);
+        map.addLayer(layer_reaEspecialdeInteresseComercialeLogstico_8);
+        function pop_readeControledaAtividadeMinerria_9(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['fid'] !== null ? autolinker.link(feature.properties['fid'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['coduso'] !== null ? autolinker.link(feature.properties['coduso'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Area_M2'] !== null ? autolinker.link(feature.properties['Area_M2'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_readeControledaAtividadeMinerria_9_0() {
+            return {
+                pane: 'pane_readeControledaAtividadeMinerria_9',
+                opacity: 1,
+                color: 'rgba(80,80,80,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(229,30,166,0.6)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_readeControledaAtividadeMinerria_9');
+        map.getPane('pane_readeControledaAtividadeMinerria_9').style.zIndex = 409;
+        map.getPane('pane_readeControledaAtividadeMinerria_9').style['mix-blend-mode'] = 'normal';
+        var layer_readeControledaAtividadeMinerria_9 = new L.geoJson(json_readeControledaAtividadeMinerria_9, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_readeControledaAtividadeMinerria_9',
+            layerName: 'layer_readeControledaAtividadeMinerria_9',
+            pane: 'pane_readeControledaAtividadeMinerria_9',
+            onEachFeature: pop_readeControledaAtividadeMinerria_9,
+            style: style_readeControledaAtividadeMinerria_9_0,
+        });
+        bounds_group.addLayer(layer_readeControledaAtividadeMinerria_9);
+        map.addLayer(layer_readeControledaAtividadeMinerria_9);
+        function pop_readeProteodoCerrado_10(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['fid'] !== null ? autolinker.link(feature.properties['fid'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['coduso'] !== null ? autolinker.link(feature.properties['coduso'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Area_M2'] !== null ? autolinker.link(feature.properties['Area_M2'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_readeProteodoCerrado_10_0() {
+            return {
+                pane: 'pane_readeProteodoCerrado_10',
+                opacity: 1,
+                color: 'rgba(80,80,80,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,255,255,0.6)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_readeProteodoCerrado_10');
+        map.getPane('pane_readeProteodoCerrado_10').style.zIndex = 410;
+        map.getPane('pane_readeProteodoCerrado_10').style['mix-blend-mode'] = 'normal';
+        var layer_readeProteodoCerrado_10 = new L.geoJson(json_readeProteodoCerrado_10, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_readeProteodoCerrado_10',
+            layerName: 'layer_readeProteodoCerrado_10',
+            pane: 'pane_readeProteodoCerrado_10',
+            onEachFeature: pop_readeProteodoCerrado_10,
+            style: style_readeProteodoCerrado_10_0,
+        });
+        bounds_group.addLayer(layer_readeProteodoCerrado_10);
+        map.addLayer(layer_readeProteodoCerrado_10);
+        function pop_readeProteodoRioJundia_11(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Layer'] !== null ? autolinker.link(feature.properties['Layer'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['area_m2'] !== null ? autolinker.link(feature.properties['area_m2'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_readeProteodoRioJundia_11_0() {
+            return {
+                pane: 'pane_readeProteodoRioJundia_11',
+                opacity: 1,
+                color: 'rgba(80,80,80,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(3,11,240,0.6)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_readeProteodoRioJundia_11');
+        map.getPane('pane_readeProteodoRioJundia_11').style.zIndex = 411;
+        map.getPane('pane_readeProteodoRioJundia_11').style['mix-blend-mode'] = 'normal';
+        var layer_readeProteodoRioJundia_11 = new L.geoJson(json_readeProteodoRioJundia_11, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_readeProteodoRioJundia_11',
+            layerName: 'layer_readeProteodoRioJundia_11',
+            pane: 'pane_readeProteodoRioJundia_11',
+            onEachFeature: pop_readeProteodoRioJundia_11,
+            style: style_readeProteodoRioJundia_11_0,
+        });
+        bounds_group.addLayer(layer_readeProteodoRioJundia_11);
+        map.addLayer(layer_readeProteodoRioJundia_11);
+        function pop_SetoresdeQualificaoUrbana_12(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['FID'] !== null ? autolinker.link(feature.properties['FID'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_SetoresdeQualificaoUrbana_12_0() {
+            return {
+                pane: 'pane_SetoresdeQualificaoUrbana_12',
+                interactive: true,
+            }
+        }
+        function style_SetoresdeQualificaoUrbana_12_1() {
+            return {
+                pane: 'pane_SetoresdeQualificaoUrbana_12',
+                opacity: 1,
+                color: 'rgba(0,0,0,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 1.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        map.createPane('pane_SetoresdeQualificaoUrbana_12');
+        map.getPane('pane_SetoresdeQualificaoUrbana_12').style.zIndex = 412;
+        map.getPane('pane_SetoresdeQualificaoUrbana_12').style['mix-blend-mode'] = 'normal';
+        var layer_SetoresdeQualificaoUrbana_12 = new L.geoJson.multiStyle(json_SetoresdeQualificaoUrbana_12, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_SetoresdeQualificaoUrbana_12',
+            layerName: 'layer_SetoresdeQualificaoUrbana_12',
+            pane: 'pane_SetoresdeQualificaoUrbana_12',
+            onEachFeature: pop_SetoresdeQualificaoUrbana_12,
+            styles: [style_SetoresdeQualificaoUrbana_12_0,style_SetoresdeQualificaoUrbana_12_1,]
+        });
+        bounds_group.addLayer(layer_SetoresdeQualificaoUrbana_12);
+        map.addLayer(layer_SetoresdeQualificaoUrbana_12);
+        function pop_EixodeEstruturaoUrbanaII_13(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['sv_2015'] !== null ? autolinker.link(feature.properties['sv_2015'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['osm_id'] !== null ? autolinker.link(feature.properties['osm_id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['name'] !== null ? autolinker.link(feature.properties['name'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ref'] !== null ? autolinker.link(feature.properties['ref'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['type'] !== null ? autolinker.link(feature.properties['type'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['oneway'] !== null ? autolinker.link(feature.properties['oneway'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['bridge'] !== null ? autolinker.link(feature.properties['bridge'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['tunnel'] !== null ? autolinker.link(feature.properties['tunnel'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['maxspeed'] !== null ? autolinker.link(feature.properties['maxspeed'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['coord'] !== null ? autolinker.link(feature.properties['coord'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_EixodeEstruturaoUrbanaII_13_0() {
+            return {
+                pane: 'pane_EixodeEstruturaoUrbanaII_13',
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '',
+                lineCap: 'round',
+                lineJoin: 'round',
+                weight: 3.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        map.createPane('pane_EixodeEstruturaoUrbanaII_13');
+        map.getPane('pane_EixodeEstruturaoUrbanaII_13').style.zIndex = 413;
+        map.getPane('pane_EixodeEstruturaoUrbanaII_13').style['mix-blend-mode'] = 'normal';
+        var layer_EixodeEstruturaoUrbanaII_13 = new L.geoJson(json_EixodeEstruturaoUrbanaII_13, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_EixodeEstruturaoUrbanaII_13',
+            layerName: 'layer_EixodeEstruturaoUrbanaII_13',
+            pane: 'pane_EixodeEstruturaoUrbanaII_13',
+            onEachFeature: pop_EixodeEstruturaoUrbanaII_13,
+            style: style_EixodeEstruturaoUrbanaII_13_0,
+        });
+        bounds_group.addLayer(layer_EixodeEstruturaoUrbanaII_13);
+        map.addLayer(layer_EixodeEstruturaoUrbanaII_13);
+        function pop_EixodeEstruturaoUrbanaI_14(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['sv_2015'] !== null ? autolinker.link(feature.properties['sv_2015'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['osm_id'] !== null ? autolinker.link(feature.properties['osm_id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['name'] !== null ? autolinker.link(feature.properties['name'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['ref'] !== null ? autolinker.link(feature.properties['ref'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['type'] !== null ? autolinker.link(feature.properties['type'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['oneway'] !== null ? autolinker.link(feature.properties['oneway'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['bridge'] !== null ? autolinker.link(feature.properties['bridge'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['tunnel'] !== null ? autolinker.link(feature.properties['tunnel'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['maxspeed'] !== null ? autolinker.link(feature.properties['maxspeed'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['coord'] !== null ? autolinker.link(feature.properties['coord'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_EixodeEstruturaoUrbanaI_14_0() {
+            return {
+                pane: 'pane_EixodeEstruturaoUrbanaI_14',
+                opacity: 1,
+                color: 'rgba(40,40,40,1.0)',
+                dashArray: '',
+                lineCap: 'round',
+                lineJoin: 'round',
+                weight: 2.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        map.createPane('pane_EixodeEstruturaoUrbanaI_14');
+        map.getPane('pane_EixodeEstruturaoUrbanaI_14').style.zIndex = 414;
+        map.getPane('pane_EixodeEstruturaoUrbanaI_14').style['mix-blend-mode'] = 'normal';
+        var layer_EixodeEstruturaoUrbanaI_14 = new L.geoJson(json_EixodeEstruturaoUrbanaI_14, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_EixodeEstruturaoUrbanaI_14',
+            layerName: 'layer_EixodeEstruturaoUrbanaI_14',
+            pane: 'pane_EixodeEstruturaoUrbanaI_14',
+            onEachFeature: pop_EixodeEstruturaoUrbanaI_14,
+            style: style_EixodeEstruturaoUrbanaI_14_0,
+        });
+        bounds_group.addLayer(layer_EixodeEstruturaoUrbanaI_14);
+        map.addLayer(layer_EixodeEstruturaoUrbanaI_14);
+        function pop_ZEISII_15(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['id'] !== null ? autolinker.link(feature.properties['id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['layer'] !== null ? autolinker.link(feature.properties['layer'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['nome'] !== null ? autolinker.link(feature.properties['nome'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['situacao'] !== null ? autolinker.link(feature.properties['situacao'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_ZEISII_15_0() {
+            return {
+                pane: 'pane_ZEISII_15',
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(245,210,33,0.5019607843137255)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_ZEISII_15');
+        map.getPane('pane_ZEISII_15').style.zIndex = 415;
+        map.getPane('pane_ZEISII_15').style['mix-blend-mode'] = 'normal';
+        var layer_ZEISII_15 = new L.geoJson(json_ZEISII_15, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_ZEISII_15',
+            layerName: 'layer_ZEISII_15',
+            pane: 'pane_ZEISII_15',
+            onEachFeature: pop_ZEISII_15,
+            style: style_ZEISII_15_0,
+        });
+        bounds_group.addLayer(layer_ZEISII_15);
+        map.addLayer(layer_ZEISII_15);
+        function pop_ZEISI_16(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['id'] !== null ? autolinker.link(feature.properties['id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['layer'] !== null ? autolinker.link(feature.properties['layer'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['nome'] !== null ? autolinker.link(feature.properties['nome'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['situacao'] !== null ? autolinker.link(feature.properties['situacao'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_ZEISI_16_0() {
+            return {
+                pane: 'pane_ZEISI_16',
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(85,85,85,0.5019607843137255)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_ZEISI_16');
+        map.getPane('pane_ZEISI_16').style.zIndex = 416;
+        map.getPane('pane_ZEISI_16').style['mix-blend-mode'] = 'normal';
+        var layer_ZEISI_16 = new L.geoJson(json_ZEISI_16, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_ZEISI_16',
+            layerName: 'layer_ZEISI_16',
+            pane: 'pane_ZEISI_16',
+            onEachFeature: pop_ZEISI_16,
+            style: style_ZEISI_16_0,
+        });
+        bounds_group.addLayer(layer_ZEISI_16);
+        map.addLayer(layer_ZEISI_16);
+        var osmGeocoder = new L.Control.Geocoder({
+            collapsed: true,
+            position: 'topleft',
+            text: 'Search',
+            title: 'Testing'
+        }).addTo(map);
+        document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
+        .className += ' fa fa-search';
+        document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
+        .title += 'Search for a place';
+        var baseMaps = {};
+        L.control.layers(baseMaps,{'<img src="legend/ZEISI_16.png" /> <b>ZEIS I</b>': layer_ZEISI_16,'<img src="legend/ZEISII_15.png" /> <b>ZEIS II</b>': layer_ZEISII_15,'<img src="legend/EixodeEstruturaoUrbanaI_14.png" /> <b>Eixo de Estruturação Urbana I</b>': layer_EixodeEstruturaoUrbanaI_14,'<img src="legend/EixodeEstruturaoUrbanaII_13.png" /> <b>Eixo de Estruturação Urbana II</b>': layer_EixodeEstruturaoUrbanaII_13,'<img src="legend/SetoresdeQualificaoUrbana_12.png" /> <b>Setores de Qualificação Urbana</b>': layer_SetoresdeQualificaoUrbana_12,'<img src="legend/readeProteodoRioJundia_11.png" /> <b>Área de Proteção do Rio Jundiaí</b>': layer_readeProteodoRioJundia_11,'<img src="legend/readeProteodoCerrado_10.png" /> <b>Área de Proteção do Cerrado</b>': layer_readeProteodoCerrado_10,'<img src="legend/readeControledaAtividadeMinerria_9.png" /> <b>Área de Controle da Atividade Minerária</b>': layer_readeControledaAtividadeMinerria_9,'<img src="legend/reaEspecialdeInteresseComercialeLogstico_8.png" /> <b>Área Especial de Interesse Comercial e Logístico</b>': layer_reaEspecialdeInteresseComercialeLogstico_8,'<img src="legend/reaEspecialdeEstruturaoCentralI_7.png" /> <b>Área Especial de Estruturação Central I</b>': layer_reaEspecialdeEstruturaoCentralI_7,'<img src="legend/reaEspecialdeEstruturaoCentralII_6.png" /> <b>Área Especial de Estruturação Central II</b>': layer_reaEspecialdeEstruturaoCentralII_6,'<b>Macrozona de Desenvolvimento Rural Sustentável</b><br /><table><tr><td style="text-align: center;"><img src="legend/MacrozonadeDesenvolvimentoRuralSustentvel_5_ZonadeProtecaodaBiodiversidade0.png" /></td><td>Zona de Protecao da Biodiversidade</td></tr><tr><td style="text-align: center;"><img src="legend/MacrozonadeDesenvolvimentoRuralSustentvel_5_ZonadeTransiçãoPeriurbanaII1.png" /></td><td>Zona de Transição Periurbana II</td></tr><tr><td style="text-align: center;"><img src="legend/MacrozonadeDesenvolvimentoRuralSustentvel_5_ZonaProdutivaedeAbastecimentoHidrico2.png" /></td><td>Zona Produtiva e de Abastecimento Hidrico</td></tr><tr><td style="text-align: center;"><img src="legend/MacrozonadeDesenvolvimentoRuralSustentvel_5_ZonaTuristicadoCircuitodasFrutas3.png" /></td><td>Zona Turistica do Circuito das Frutas</td></tr></table>': layer_MacrozonadeDesenvolvimentoRuralSustentvel_5,'<b>Macrozona de Proteção das Serras</b><br /><table><tr><td style="text-align: center;"><img src="legend/MacrozonadeProteodasSerras_4_ZonadeControleAmbientalI0.png" /></td><td>Zona de Controle Ambiental I</td></tr><tr><td style="text-align: center;"><img src="legend/MacrozonadeProteodasSerras_4_ZonadeControleAmbientalII1.png" /></td><td>Zona de Controle Ambiental II</td></tr><tr><td style="text-align: center;"><img src="legend/MacrozonadeProteodasSerras_4_ZonadeProtecaoAmbiental2.png" /></td><td>Zona de Protecao Ambiental</td></tr><tr><td style="text-align: center;"><img src="legend/MacrozonadeProteodasSerras_4_ZonadeUsoSustentável3.png" /></td><td>Zona de Uso Sustentável</td></tr></table>': layer_MacrozonadeProteodasSerras_4,'<b>Macrozona de Urbanização Consolidada</b><br /><table><tr><td style="text-align: center;"><img src="legend/MacrozonadeUrbanizaoConsolidada_3_ZonadeControleeQualificaçãoUrbanaeAmbiental0.png" /></td><td>Zona de Controle e Qualificação Urbana e Ambiental</td></tr><tr><td style="text-align: center;"><img src="legend/MacrozonadeUrbanizaoConsolidada_3_ZonadeUsoDiversificadoI1.png" /></td><td>Zona de Uso Diversificado I</td></tr><tr><td style="text-align: center;"><img src="legend/MacrozonadeUrbanizaoConsolidada_3_ZonaEspecialdeInteresseHistóricoCultural2.png" /></td><td>Zona Especial de Interesse Histórico-Cultural</td></tr><tr><td style="text-align: center;"><img src="legend/MacrozonadeUrbanizaoConsolidada_3_ZonaTransicaoPeriurbanaI3.png" /></td><td>Zona Transicao Periurbana I</td></tr></table>': layer_MacrozonadeUrbanizaoConsolidada_3,'<b>Macrozona de Expansão Urbana</b><br /><table><tr><td style="text-align: center;"><img src="legend/MacrozonadeExpansoUrbana_2_ZonadeExpansãoModerada0.png" /></td><td>Zona de Expansão Moderada</td></tr><tr><td style="text-align: center;"><img src="legend/MacrozonadeExpansoUrbana_2_ZonadeInteresseComercialeLogisticoI1.png" /></td><td>Zona de Interesse Comercial e Logistico I</td></tr><tr><td style="text-align: center;"><img src="legend/MacrozonadeExpansoUrbana_2_ZonadeInteresseComercialeLogisticoII2.png" /></td><td>Zona de Interesse Comercial e Logistico II</td></tr><tr><td style="text-align: center;"><img src="legend/MacrozonadeExpansoUrbana_2_ZonadeUsoDiversificadoII3.png" /></td><td>Zona de Uso Diversificado II</td></tr></table>': layer_MacrozonadeExpansoUrbana_2,'<img src="legend/LimitedomunicpioJundia_1.png" /> <b>Limite do município - Jundiaí</b>': layer_LimitedomunicpioJundia_1,"<b>Google - Satélite</b>": layer_GoogleSatlite_0,},{collapsed:false}).addTo(map);
+        setBounds();
+        </script>
+    </body>
+</html>
