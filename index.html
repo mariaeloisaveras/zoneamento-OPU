@@ -778,13 +778,43 @@
             layer.bindPopup(popupContent, {maxHeight: 400});
         }
 
+        var pattern_SetoresdeQualificaoUrbana_12_0 = new L.StripePattern({
+            weight: 0.7,
+            spaceWeight: 4.8,
+            color: '#000000',
+            opacity: 1.0,
+            spaceOpacity: 0,
+            angle: 315
+        });
+        pattern_SetoresdeQualificaoUrbana_12_0.addTo(map);
         function style_SetoresdeQualificaoUrbana_12_0() {
             return {
                 pane: 'pane_SetoresdeQualificaoUrbana_12',
+                stroke: false,
+                fillOpacity: 1,
+                fillPattern: pattern_SetoresdeQualificaoUrbana_12_0,
                 interactive: true,
             }
         }
+        var pattern_SetoresdeQualificaoUrbana_12_1 = new L.StripePattern({
+            weight: 0.7,
+            spaceWeight: 4.8,
+            color: '#000000',
+            opacity: 1.0,
+            spaceOpacity: 0,
+            angle: 225
+        });
+        pattern_SetoresdeQualificaoUrbana_12_1.addTo(map);
         function style_SetoresdeQualificaoUrbana_12_1() {
+            return {
+                pane: 'pane_SetoresdeQualificaoUrbana_12',
+                stroke: false,
+                fillOpacity: 1,
+                fillPattern: pattern_SetoresdeQualificaoUrbana_12_1,
+                interactive: true,
+            }
+        }
+        function style_SetoresdeQualificaoUrbana_12_2() {
             return {
                 pane: 'pane_SetoresdeQualificaoUrbana_12',
                 opacity: 1,
@@ -792,7 +822,7 @@
                 dashArray: '',
                 lineCap: 'square',
                 lineJoin: 'bevel',
-                weight: 1.0,
+                weight: 2.0,
                 fillOpacity: 0,
                 interactive: true,
             }
@@ -807,7 +837,7 @@
             layerName: 'layer_SetoresdeQualificaoUrbana_12',
             pane: 'pane_SetoresdeQualificaoUrbana_12',
             onEachFeature: pop_SetoresdeQualificaoUrbana_12,
-            styles: [style_SetoresdeQualificaoUrbana_12_0,style_SetoresdeQualificaoUrbana_12_1,]
+            styles: [style_SetoresdeQualificaoUrbana_12_0,style_SetoresdeQualificaoUrbana_12_1,style_SetoresdeQualificaoUrbana_12_2,]
         });
         bounds_group.addLayer(layer_SetoresdeQualificaoUrbana_12);
         map.addLayer(layer_SetoresdeQualificaoUrbana_12);
