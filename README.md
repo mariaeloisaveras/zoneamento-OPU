@@ -1,7 +1,7 @@
-# https://mariaeloisaveras.github.io/zoneamento-OPU/
+## Acesse em: https://mariaeloisaveras.github.io/oficina-rural/
 
-Conteúdo: Mapa interativo da proposta de macrozoneamento e de zoneamento do município de Jundiaí
+Conteúdo: Mapa interativo de uso da terra da área de estudo, no estado do Pará
 
-Disciplina: Oficina de Planejamento Urbano
+Disciplina: Oficina de Planejamento de Áreas Periurbanas, Interioranas e Rurais
 
-Ano: 2020
+Ano: 2021
